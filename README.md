@@ -10,6 +10,12 @@ So you can drop a new kind of thing into it without rebuilding anything.
 
 No frameworks. No build step. No `npm install`. Open the files and read them.
 
+**Live:** https://scottvasconcellos.github.io/thingamabob-workspace/app/
+(open that in **Safari** on the iPhone → Share → Add to Home Screen)
+
+It works right now, saving locally on each device. It starts syncing between
+them the moment you finish step 1 below.
+
 ---
 
 ## The 60-second version
