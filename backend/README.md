@@ -1,7 +1,7 @@
 # The shared sync backend
 
 One deployment of `Code.gs` serves **every** thing-a-ma-bob app you ever make.
-You do this once. After that, `/make-it-sync` wires up any new repo with no
+You do this once. After that, `/gimme-a-link` wires up any new repo with no
 setup at all.
 
 It is free, it lives in your own Google account, and unlike a Supabase free

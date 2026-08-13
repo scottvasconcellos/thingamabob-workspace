@@ -32,7 +32,7 @@ Shared backend record for **all** of Scott's apps:
 `~/.claude/tmb-backend.json` → `{ endpoint, secret, kind, sheet_id }`
 
 Why one backend for every app: the first app pays the setup cost; every app
-afterward is wired up with no setup at all. That is what makes `/make-it-sync`
+afterward is wired up with no setup at all. That is what makes `/gimme-a-link`
 a one-prompt operation in repo number seven.
 
 ### Why not a connector

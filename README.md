@@ -118,7 +118,7 @@ Note Pages on a free account only serves **public** repos.
 **The easy way — just run this in the repo and say what you want:**
 
 ```
-/make-it-sync
+/gimme-a-link
 ```
 
 It edits the registry for you, and asks if anything's unclear. Built-in types
@@ -149,7 +149,7 @@ example: [`app/README-app.md`](app/README-app.md).
 This repo's sync layer is a drop-in. To put it in any other repo:
 
 ```
-/make-it-sync
+/gimme-a-link
 ```
 
 That skill finds the repo's HTML, installs the same `sync/` folder, wires up

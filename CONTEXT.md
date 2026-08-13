@@ -10,7 +10,7 @@ The real problem it solves: Scott has many started apps and none of them stick,
 because state never followed him from the Mac to the iPhone. An app you can only
 use at your desk is an app you stop using. So the point of this repo is *not*
 the checklist — it is the sync layer plus the module registry, proven once here,
-then reused everywhere else via the `/make-it-sync` skill.
+then reused everywhere else via the `/gimme-a-link` skill.
 
 ## What "good work" looks like here
 
@@ -66,5 +66,5 @@ then reused everywhere else via the `/make-it-sync` skill.
 ## Current state
 
 Baseline scaffold: shell app, one example `checklist` module ("Today"), the
-portable sync drop-in, IOM safety net, and the `/make-it-sync` skill that
+portable sync drop-in, IOM safety net, and the `/gimme-a-link` skill that
 installs the same sync layer into Scott's other repos.

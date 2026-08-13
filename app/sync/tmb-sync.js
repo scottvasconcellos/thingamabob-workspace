@@ -2,7 +2,7 @@
  * tmb-sync.js — portable cross-device state sync for plain HTML apps.
  *
  * THIS FILE IS A DROP-IN. The same copy is installed into other repos by the
- * /make-it-sync skill, so it must never depend on anything outside this folder.
+ * /gimme-a-link skill, so it must never depend on anything outside this folder.
  *
  * It gives you:
  *   TMB.get(key)            -> value (from local state, always instant)

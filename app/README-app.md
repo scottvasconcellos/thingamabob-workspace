@@ -40,7 +40,7 @@ it is the storage key, so renaming it orphans that module's saved state.
 
 ### Built-in types
 
-The quickest way to add any of these is to run `/make-it-sync` and say what you
+The quickest way to add any of these is to run `/gimme-a-link` and say what you
 want — it edits the registry for you. To do it by hand:
 
 | Type | Options |

@@ -50,7 +50,7 @@ the sync layer or the backend.
 - `app/index.html` — the shell: header, status pill, module picker, `<main>`.
 - `app/app.js` — config loading, module rendering, user interaction.
 - `app/sync/tmb-sync.js` — the portable sync layer. **This file is a drop-in**;
-  the same file is installed into other repos by the `/make-it-sync` skill.
+  the same file is installed into other repos by the `/gimme-a-link` skill.
   Keep it self-contained — it must never depend on anything else in this repo.
 - `app/modules.config.json` — the thing-a-ma-bob registry.
 

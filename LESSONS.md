@@ -9,7 +9,7 @@ re-deriving it.
   LESSONS.md, `.iom/status`, registered for `/checkup`). The app is a plain
   HTML/CSS/JS PWA with a module registry (`app/modules.config.json`), one
   example `checklist` module, and a portable sync layer (`app/sync/tmb-sync.js`)
-  that also ships as the `/make-it-sync` skill for other repos. Backend is a
+  that also ships as the `/gimme-a-link` skill for other repos. Backend is a
   Google Apps Script web app — free, in Scott's own Drive, and unlike a free
   Supabase project it never sleeps.
 
