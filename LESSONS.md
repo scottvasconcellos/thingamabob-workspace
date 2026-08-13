@@ -50,3 +50,16 @@ re-deriving it.
   checklists now — a note's state is just `{text}`, a counter's is `{count}`.
   Verified both by driving them in a browser: note text survives a reload, the
   counter clamps at `min`, and the picker remembers which module was open.
+
+- **2026-08-13 — Nearly published a repo full of family and legal records.**
+  Running the skill on another repo, an agent caught that free GitHub Pages
+  serves public repos only, and that repo held 40 tracked files of family and
+  legal records — kids' names, grade-placement reasoning, NOI filings. Two
+  things came out of it. First, `gh repo create --source=.` publishes the entire
+  *git history*, so deleting sensitive files before pushing does nothing; the
+  only safe path is a fresh app-only repo with no history. Second, "be careful"
+  is not a control: there is now a real scanner
+  (`~/.claude/skills/gimme-a-link/assets/privacy_scan.py`) that the skill must
+  run on the exact directory being published, and it blocks on credentials, IDs,
+  MAC addresses, and sensitive filenames while flagging names, addresses, IPs,
+  hostnames, and legal/medical/school references for a per-finding decision.

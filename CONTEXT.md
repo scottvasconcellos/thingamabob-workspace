@@ -43,6 +43,10 @@ then reused everywhere else via the `/gimme-a-link` skill.
   immediately, always. Remote is an enhancement that arrives late, never a
   prerequisite for rendering.
 - **Putting anything sensitive in a module.** See below.
+- **Publishing a working repo instead of an app-only copy.** Scott's repos sit
+  next to family records, legal filings, and school paperwork. Free GitHub Pages
+  is public-only and pushing a repo pushes its whole history, so deleting files
+  first does not help. Publish a fresh app-only repo, always.
 
 ## Deliberate constraints (decided, not accidental)
 
