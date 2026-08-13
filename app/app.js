@@ -30,16 +30,13 @@
   // ===========================================================================
 
   var RENDERERS = {
-    checklist: renderChecklistModule
+    checklist: renderChecklistModule,
+    note: renderNoteModule,
+    counter: renderCounterModule
 
-    // To add a new type, e.g. "note":
-    //   1. add   note: renderNoteModule   to this map
-    //   2. write the function below, following renderChecklistModule's shape:
-    //        function renderNoteModule(module, state, save) {
-    //          // build DOM into a container, call save(newState) on change,
-    //          // and return the container element.
-    //        }
-    //   3. add a module with "type": "note" to modules.config.json
+    // To add another type, write a function with the same shape —
+    //   function renderThingModule(module, state, save) { … return node; }
+    // — call save(state) whenever something changes, and add it to this map.
     // Nothing else in this file needs to change.
   };
 
@@ -47,26 +44,28 @@
   // State: defaults from config, overlaid with whatever has been saved.
   // ===========================================================================
 
-  // Config fields seed the list once. After that the saved list is the truth,
-  // so an item you deleted stays deleted instead of reappearing on reload,
-  // while genuinely new fields added to the config still show up.
+  // For checklists, config fields seed the list once. After that the saved list
+  // is the truth, so an item you deleted stays deleted instead of reappearing on
+  // reload, while genuinely new fields added to the config still show up.
   function stateForModule(module) {
     var saved = TMB.get(module.id);
     var state = (saved && typeof saved === 'object') ? saved : {};
 
-    if (!Array.isArray(state.items)) state.items = [];
-    if (!Array.isArray(state.seeded)) state.seeded = [];
+    if (module.type === 'checklist') {
+      if (!Array.isArray(state.items)) state.items = [];
+      if (!Array.isArray(state.seeded)) state.seeded = [];
 
-    (module.fields || []).forEach(function (field) {
-      if (state.seeded.indexOf(field.id) === -1) {
-        state.items.push({
-          id: field.id,
-          label: field.label,
-          done: !!field.defaultDone
-        });
-        state.seeded.push(field.id);
-      }
-    });
+      (module.fields || []).forEach(function (field) {
+        if (state.seeded.indexOf(field.id) === -1) {
+          state.items.push({
+            id: field.id,
+            label: field.label,
+            done: !!field.defaultDone
+          });
+          state.seeded.push(field.id);
+        }
+      });
+    }
 
     return state;
   }
@@ -172,6 +171,97 @@
 
     wrap.appendChild(input);
     wrap.appendChild(button);
+    return wrap;
+  }
+
+  // ===========================================================================
+  // Note renderer — one free-text box that saves as you type.
+  // ===========================================================================
+
+  function renderNoteModule(module, state, save) {
+    var box = document.createElement('textarea');
+    box.className = 'note-box';
+    box.rows = module.rows || 12;
+    box.placeholder = module.placeholder || 'Write anything…';
+    box.value = state.text || '';
+
+    // Debounced so a long note isn't a save on every keystroke.
+    var timer = null;
+    box.addEventListener('input', function () {
+      state.text = box.value;
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(function () { save(state); }, 400);
+    });
+    // Don't lose the last few characters if the tab goes away mid-typing.
+    box.addEventListener('blur', function () {
+      if (timer) clearTimeout(timer);
+      state.text = box.value;
+      save(state);
+    });
+
+    return box;
+  }
+
+  // ===========================================================================
+  // Counter renderer — a number with big minus/plus buttons.
+  // ===========================================================================
+
+  function renderCounterModule(module, state, save) {
+    if (typeof state.count !== 'number') state.count = module.start || 0;
+    var step = module.step || 1;
+
+    var wrap = document.createElement('div');
+    wrap.className = 'counter';
+
+    var value = document.createElement('div');
+    value.className = 'counter-value';
+
+    function paint() { value.textContent = String(state.count); }
+
+    function bump(by) {
+      var next = state.count + by;
+      if (typeof module.min === 'number' && next < module.min) return;
+      if (typeof module.max === 'number' && next > module.max) return;
+      state.count = next;
+      paint();
+      save(state);
+    }
+
+    var minus = document.createElement('button');
+    minus.type = 'button';
+    minus.className = 'counter-btn';
+    minus.textContent = '−';
+    minus.setAttribute('aria-label', 'Subtract ' + step);
+    minus.addEventListener('click', function () { bump(-step); });
+
+    var plus = document.createElement('button');
+    plus.type = 'button';
+    plus.className = 'counter-btn';
+    plus.textContent = '+';
+    plus.setAttribute('aria-label', 'Add ' + step);
+    plus.addEventListener('click', function () { bump(step); });
+
+    paint();
+    wrap.appendChild(minus);
+    wrap.appendChild(value);
+    wrap.appendChild(plus);
+
+    if (module.allowReset !== false) {
+      var reset = document.createElement('button');
+      reset.type = 'button';
+      reset.className = 'counter-reset';
+      reset.textContent = 'Reset';
+      reset.addEventListener('click', function () {
+        state.count = module.start || 0;
+        paint();
+        save(state);
+      });
+      var outer = document.createElement('div');
+      outer.appendChild(wrap);
+      outer.appendChild(reset);
+      return outer;
+    }
+
     return wrap;
   }
 

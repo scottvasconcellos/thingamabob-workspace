@@ -194,6 +194,64 @@ main { padding: 0 16px 24px; }
   cursor: pointer;
 }
 
+/* Note module */
+.note-box {
+  width: 100%;
+  padding: 14px;
+  font-size: 18px;
+  font-family: inherit;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  resize: vertical;
+}
+.note-box::placeholder { color: var(--text-dim); }
+
+/* Counter module */
+.counter {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.counter-btn {
+  flex: none;
+  width: 76px;
+  height: 76px;
+  font-size: 34px;
+  font-family: inherit;
+  line-height: 1;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  cursor: pointer;
+}
+.counter-btn:active { background: var(--surface-hi); }
+
+.counter-value {
+  flex: 1 1 auto;
+  text-align: center;
+  font-size: 52px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums; /* digits keep width — no layout jump */
+}
+
+.counter-reset {
+  margin-top: 14px;
+  height: 48px;
+  padding: 0 20px;
+  font-size: 16px;
+  font-family: inherit;
+  color: var(--text-dim);
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
 /* Shown when a module's type has no renderer — visible, never a blank page. */
 .module-error {
   padding: 16px;

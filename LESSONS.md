@@ -43,3 +43,10 @@ re-deriving it.
   its secret is *unlisted, not private*. The rule that falls out of this:
   nothing sensitive ever goes in a thing-a-ma-bob. Gitignoring the file would
   have broken the deployed app while providing no actual protection.
+
+- **2026-08-13 — Added `note` and `counter` module types.** The app now ships
+  three renderers, not one, so "add a thing-a-ma-bob" is usually a config edit
+  with no new code at all. `stateForModule` only seeds `items`/`seeded` for
+  checklists now — a note's state is just `{text}`, a counter's is `{count}`.
+  Verified both by driving them in a browser: note text survives a reload, the
+  counter clamps at `min`, and the picker remembers which module was open.

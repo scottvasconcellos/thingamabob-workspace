@@ -115,7 +115,16 @@ Note Pages on a free account only serves **public** repos.
 
 ## 4. Add a new thing-a-ma-bob
 
-Edit [`app/modules.config.json`](app/modules.config.json):
+**The easy way — just run this in the repo and say what you want:**
+
+```
+/make-it-sync
+```
+
+It edits the registry for you, and asks if anything's unclear. Built-in types
+are `checklist`, `note`, and `counter`.
+
+**By hand**, edit [`app/modules.config.json`](app/modules.config.json):
 
 ```json
 {

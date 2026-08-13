@@ -38,8 +38,21 @@ Reload. It appears in the picker with its own independent, synced state.
 **Required keys:** `id`, `type`, `title`. `id` must be unique and stable —
 it is the storage key, so renaming it orphans that module's saved state.
 
-**Checklist options:** `fields` seeds the initial items; `allowAddItems: false`
-hides the add box.
+### Built-in types
+
+The quickest way to add any of these is to run `/make-it-sync` and say what you
+want — it edits the registry for you. To do it by hand:
+
+| Type | Options |
+|---|---|
+| `checklist` | `fields` seeds initial items; `allowAddItems: false` hides the add box |
+| `note` | `rows` (default 12), `placeholder`. Saves 400ms after you stop typing, and on blur. |
+| `counter` | `start` (0), `step` (1), `min`, `max`, `allowReset: false` |
+
+```json
+{ "id": "scratch", "type": "note", "title": "Scratch", "rows": 8 },
+{ "id": "water", "type": "counter", "title": "Water", "min": 0 }
+```
 
 ### How config fields and saved state interact
 
