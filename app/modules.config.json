@@ -1,0 +1,12 @@
+[
+  {
+    "id": "today-checklist",
+    "type": "checklist",
+    "title": "Today",
+    "description": "Default daily checklist",
+    "allowAddItems": true,
+    "fields": [
+      { "id": "task-1", "label": "Example item", "defaultDone": false }
+    ]
+  }
+]

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Thing-a-ma-bob Workspace</title>
+
+<!-- Fixed viewport: no pinch-zoom, no horizontal scroll, content clear of the
+     iPhone notch and home indicator. -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+
+<!-- PWA / iOS home-screen bits -->
+<link rel="manifest" href="sync/manifest.webmanifest">
+<meta name="theme-color" content="#121212">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Thing-a-ma-bob">
+<link rel="apple-touch-icon" href="sync/icons/icon-192.png">
+
+<link rel="stylesheet" href="style.css">
+
+<!-- config must load before the sync layer, which must load before the app. -->
+<script src="sync/config.js"></script>
+<script src="sync/tmb-sync.js"></script>
+<script src="app.js" defer></script>
+</head>
+<body>
+
+<header class="app-header">
+  <h1 class="app-title">Thing-a-ma-bob</h1>
+  <span id="sync-status" class="status-pill status-local" title="Sync status">Local only</span>
+</header>
+
+<nav class="module-nav">
+  <label class="visually-hidden" for="module-select">Choose a thing-a-ma-bob</label>
+  <select id="module-select"></select>
+</nav>
+
+<main id="module-root" aria-live="polite"></main>
+
+<footer class="app-footer">
+  <span id="module-description"></span>
+</footer>
+
+</body>
+</html>

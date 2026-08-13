@@ -1,0 +1,14 @@
+# IOM working state — local only, never committed
+.iom/
+
+# macOS
+.DS_Store
+
+# Real secrets. Note that app/sync/config.js is deliberately NOT ignored:
+# it holds a public, client-side endpoint + shared secret, and the deployed
+# site needs it. See CONTEXT.md → "Deliberate constraints".
+.env
+.env.*
+*.pem
+*service-role*
+*service_role*
